@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="text-center">All Pythons</h1>
+<div class="d-flex p-3">
+{% if pythons %}
+	{% for python in pythons %}
+	{% include 'python_detail.html' with python=python %}
+	{% endfor %}
+{% endif %}
+</div>
+<div class="card-footer navbar-dark bg-dark footer fixed-bottom text-center">
+  <small class="text-light text-center">Templates Advanced Exercise @SoftUni</small>
+</div>
+{% endblock %}

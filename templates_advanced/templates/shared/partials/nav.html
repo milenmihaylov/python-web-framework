@@ -1,0 +1,9 @@
+<nav>
+	{% if page == 'list_todos' %}
+	<a href="{% url 'list todos' %}" class="btn disabled">List</a>
+	<a href="{% url 'create todo' %}" class="btn">Create</a>
+	{% else %}
+	<a href="{% url 'list todos' %}" class="btn">List</a>
+	<a href="{% url 'create todo' %}" class="btn disabled">Create</a>
+	{% endif %}
+</nav>
