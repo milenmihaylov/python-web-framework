@@ -14,8 +14,8 @@ def create(req):
         form = PythonCreateForm()
         return render(req, 'create.html', {'form': form})
     else:
-        data = req.POST
-        form = PythonCreateForm(data)
+        data = req.POST, req.FILES
+        form = PythonCreateForm(*data)
         print(form)
         if form.is_valid():
             python = form.save()

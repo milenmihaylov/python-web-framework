@@ -1,0 +1,25 @@
+
+<head>
+{% load static %}
+<link rel="stylesheet" href="/static/resources/base.css">
+	<title></title>
+</head>
+<body>
+{% block content %}
+
+	<ul>
+		{% for pet in pets %}
+			<li>
+				{{ pet.name }}
+				<img src="{{ pet.image.url }}" alt="{{ pet.name }}">
+			</li>
+		{% endfor %}
+	</ul>
+
+	<form action="{% url 'pets' %}" method="post" enctype="multipart/form-data">
+		{% csrf_token %}
+		{{ form }}
+		<button>Create</button>
+	</form>
+{% endblock %}
+</body>
