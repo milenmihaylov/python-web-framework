@@ -1,0 +1,11 @@
+{% extends 'common/base.html' %}
+{% block content %}
+<form class="col-lg-6 offset-lg-3" method="post" action="{% url 'register user' %}">
+{% csrf_token %}
+	<div class="form-group">
+	{{ form }}
+
+	</div>
+	<button type="submit" class="btn btn-outline-dark">Register</button>
+</form>
+{% endblock %}

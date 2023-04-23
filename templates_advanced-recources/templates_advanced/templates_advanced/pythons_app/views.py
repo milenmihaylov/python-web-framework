@@ -10,12 +10,12 @@ def index(req):
 	return render(req, 'index.html', {'pythons': pythons})
 
 
-# @login_required(login_url='login user')
-@group_required(groups=['Regular user'])
+@login_required()
+# @group_required(groups=[])
 def create(req):
 	if req.method == 'GET':
 		form = PythonCreateForm()
-		return render(req, 'create.html', {'form': form})
+		return render(req, 'create_python.html', {'form': form})
 	else:
 		data = req.POST, req.FILES
 		form = PythonCreateForm(*data)

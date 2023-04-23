@@ -1,3 +1,4 @@
+{% load profile_complete_notification %}
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	<div class="navbar-brand">PythonsWiki</div>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,9 +17,12 @@
 		<div>
 			<ul class="navbar-nav text-right">
 			{% if user.is_authenticated %}
-				<a class="nav-link">Hello, {{ user.username }}! </a><a class="nav-link" href="{% url 'logout user' %}">Log out</a>
+				<a class="nav-link" href="{% url "profile details" %}">Hello, {{ user.email }}! </a>
+				<a class="nav-link" href="{% url 'profile details' %}">{% profile_complete_notification %}</a>
+				<a class="nav-link" href="{% url 'logout user' %}">Log out</a>
 			{% else %}
 				<a class="nav-link" href="{% url 'login user' %}">Log in</a>
+				<a class="nav-link" href="{% url 'register user' %}">Register</a>
 			{% endif %}
 			</ul>
 		</div>
