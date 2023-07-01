@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth import authenticate, get_user_model
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.core.exceptions import ValidationError
 
 USER_MODEL = get_user_model()
@@ -12,16 +12,13 @@ class RegisterForm(UserCreationForm):
 		fields = ('email',)
 
 
-class LogInForm(forms.Form):
+class LogInForm(AuthenticationForm):
 	user = None
-	email = forms.CharField()
-	password = forms.CharField(
-		widget=forms.PasswordInput
-	)
 
 	def clean_password(self):
+		super().clean()
 		self.user = authenticate(
-			email=self.cleaned_data['email'],
+			email=self.cleaned_data['username'],
 			password=self.cleaned_data['password'],
 		)
 		if not self.user:

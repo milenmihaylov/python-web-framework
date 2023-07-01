@@ -1,7 +1,7 @@
 {% extends 'common/base.html' %}
 {% block content %}
-	<h1>{{ request.user }}</h1>
-	<form action="{% url "profile details" %}" method="post">
+	<h1 class="text-center">{{ request.user }}</h1>
+	<form class="col-lg-6 offset-lg-3" action="{% url "profile details" %}" method="post">
 		{% csrf_token %}
 		{{ form }}
 		<button type="submit" class="btn btn-outline-dark">Save</button>
