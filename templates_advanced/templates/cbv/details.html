@@ -1,0 +1,7 @@
+{% extends 'cbv/base.html' %}
+{% block site_content %}
+	{% load static %}
+	<img class="resize" src="{{ pet.image.url }}" alt="image" >
+	{{ pet }}
+	{{ pet.passport.url }}
+{% endblock %}

@@ -27,6 +27,7 @@ INSTALLED_APPS = [
 
 	'templates_advanced.todos',
 	'resources',
+	'cbv',
 ]
 
 MIDDLEWARE = [
@@ -102,10 +103,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = (
-	join(BASE_DIR, 'templates'),
-)
-STATIC_ROOT = '/tmp/static/'
+# STATICFILES_DIRS = (
+#	join(BASE_DIR, 'static'),
+# )
+STATIC_ROOT = 'static/'
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = join(BASE_DIR, 'media')

@@ -11,3 +11,7 @@ class Pet(models.Model):
 	passport = models.FileField(
 		upload_to='private/documents',
 	)
+
+	def __str__(self):
+		return f'{self.id}. {self.name}'
+

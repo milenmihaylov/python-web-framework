@@ -9,6 +9,6 @@ urlpatterns = [
 	path('admin/', admin.site.urls),
 	path('', include('templates_advanced.todos.urls')),
 	path('pets/', include('resources.urls')),
-] + static(settings.MEDIA_URL, document_root=join(settings.MEDIA_ROOT, 'public'))
-
-
+	path('cbv/', include('cbv.urls')),
+] + static(settings.MEDIA_URL, document_root=join(settings.MEDIA_ROOT))
+# + static(settings.MEDIA_URL, document_root=join(settings.MEDIA_ROOT, 'public'))
