@@ -1,0 +1,25 @@
+version: '3.4'
+
+services:
+    db:
+        image: postgres
+        restart: always
+        ports:
+            -   "5432:5432"
+        environment:
+            POSTGRES_PASSWORD: kit-kniga-42
+            POSTGRES_USER: postgres-user
+            POSTGRES_DB: deployment
+        volumes:
+            -   ./postgresql:/var/lib/postgresql/data
+
+    web:
+        image: to_deploy_demo
+        build: .
+        command: python manage.py runserver 0.0.0.0:8000
+        ports:
+            -   "8000:8000"
+        depends_on:
+            -   db
+        env_file:
+            -   envs/.env

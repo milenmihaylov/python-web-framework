@@ -1,0 +1,41 @@
+version: '3.4'
+
+services:
+    db:
+        image: postgres
+        restart: always
+        ports:
+            -   "5432:5432"
+        environment:
+            POSTGRES_PASSWORD: kit-kniga-42
+            POSTGRES_USER: postgres-user
+            POSTGRES_DB: deployment
+        volumes:
+            -   ./postgresql:/var/lib/postgresql/data
+
+    web:
+        image: to_deploy_demo
+        build: .
+        command: gunicorn --bind=0.0.0.0:8000 to_deploy.wsgi:application
+        ports:
+            -   "8000:8000"
+        depends_on:
+            -   db
+        env_file:
+            -   envs/.env
+        volumes:
+            - /tmp/to_deploy/static/:/app/static
+
+    nginx:
+        image: nginx
+        ports:
+            -   "80:80"
+            -   "443:443"
+        volumes:
+            - /tmp/to_deploy/static/:/home/app/web/staticfiles/
+            - ./nginx/conf.d:/etc/nginx/conf.d
+            - ./nginx/logs:/var/log/nginx
+            - ./certbot/www:/var/www/certbot/:ro
+            - ./certbot/conf/:/etc/nginx/ssl/:ro
+        links:
+            - web
