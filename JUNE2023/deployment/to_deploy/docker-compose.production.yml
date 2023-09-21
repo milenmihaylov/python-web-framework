@@ -14,7 +14,7 @@ services:
             -   ./postgresql:/var/lib/postgresql/data
 
     web:
-        image: to_deploy_demo
+        image: milenmihaylov/to_deploy_demo
         build: .
         command: gunicorn --bind=0.0.0.0:8000 to_deploy.wsgi:application
         ports:
